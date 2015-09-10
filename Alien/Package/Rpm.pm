@@ -31,7 +31,7 @@ Relocatable rpm packages have a prefixes field.
 
 =item checkfile
 
-Detect rpm files by their extention.
+Detect rpm files by their extension.
 
 =cut
 
@@ -44,7 +44,7 @@ sub checkfile {
 
 =item install
 
-Install a rpm. If RPMINSTALLOPT is set in the environement, the options in
+Install a rpm. If RPMINSTALLOPT is set in the environment, the options in
 it are passed to rpm on its command line.
 
 =cut
@@ -392,7 +392,7 @@ sub cleantree {
 
 =item build
 
-Build a rpm. If RPMBUILDOPT is set in the environement, the options in
+Build a rpm. If RPMBUILDOPT is set in the environment, the options in
 it are passed to rpm on its command line.
 
 An optional parameter, if passed, can be used to specify the program to use
@@ -564,7 +564,7 @@ sub prerm {
 
 Set/get arch field. When the arch field is set, some sanitizing is done
 first to convert it to the debian format used internally. When it's
-retreived it's converted back to rpm form from the internal form.
+retrieved it's converted back to rpm form from the internal form.
 
 =cut
 

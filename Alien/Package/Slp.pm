@@ -35,7 +35,7 @@ character, I=unsigned integer.)
 =item footer_version
 
 What package format are we up to now? (Lowest one this is still
-compatable with.)
+compatible with.)
 
 =item archtrans
 
@@ -93,7 +93,7 @@ Holds the slp package format version of the slp file.
 
 =item checkfile
 
-Detect slp files by their extention.
+Detect slp files by their extension.
 
 =cut
 
@@ -270,7 +270,7 @@ Set/get conffiles.
 
 When the conffiles are set, the format used by slp (a colon-delimited list)
 is turned into the real list that is used internally. The list is changed
-back into slp's internal format when it is retreived.
+back into slp's internal format when it is retrieved.
 
 =cut
 
@@ -291,7 +291,7 @@ Set/get copyright.
 
 When the copyright is set, the number used by slp is changed into a textual
 description. This is changed back into a number when the value is
-retreived.
+retrieved.
 
 =cut
 
@@ -315,7 +315,7 @@ Set/get arch.
 
 When the arch is set, the number used by slp is changed into a textual
 description. This is changed back into a number when the value is
-retreived.
+retrieved.
 
 =cut
 
@@ -341,7 +341,7 @@ sub arch {
 
 Set/get release version.
 
-When the release version is retreived, it is converted to an unsigned
+When the release version is retrieved, it is converted to an unsigned
 integer, as is required by the slp package format.
 
 =cut

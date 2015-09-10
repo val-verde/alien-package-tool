@@ -45,7 +45,7 @@ use constant scripttrans => {
 
 =item checkfile
 
-Detect tgz files by their extention.
+Detect tgz files by their extension.
 
 =cut
 
@@ -96,7 +96,7 @@ sub scan {
 	# Get basename of the filename.
 	my ($basename)=('/'.$file)=~m#^/?.*/(.*?)$#;
 
-	# Strip out any tar extentions.
+	# Strip out any tar extensions.
 	$basename=~s/$tarext//;
 
 	if ($basename=~m/([\w-]+)-([0-9\.?]+).*/) {

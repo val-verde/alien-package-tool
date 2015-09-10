@@ -71,7 +71,7 @@ sub init {
 
 =item checkfile
 
-Detect deb files by their extention.
+Detect deb files by their extension.
 
 =cut
 
@@ -614,7 +614,7 @@ sub cleantree {
 
 Set/get package name. 
 
-Always returns the packge name in lowercase with all invalid characters
+Always returns the package name in lowercase with all invalid characters
 rmoved. The name is however, stored unchanged.
 
 =cut

@@ -62,7 +62,7 @@ The package's maintainer.
 
 =item depends
 
-The package's dependancies. Only dependencies that should exist on all
+The package's dependencies. Only dependencies that should exist on all
 target distributions can be put in here though (ie: lsb).
 
 =item group

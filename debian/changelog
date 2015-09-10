@@ -1,3 +1,27 @@
+alien (8.95) unstable; urgency=medium
+
+  * QA upload.
+  * debian/control:
+      - Bumped Standards-Version to 3.9.6.
+      - Removed duplicated section field.
+  * debian/copyright:
+      - Replaced protocol from http to https in the Format field.
+      - Included authors' e-mail addresses.
+      - Replaced GPL-2+ license reference by actual GPL-2+ license.
+  * debian/source/format: Created as 3.0 (native).
+
+ -- Fabiano Antunes <fabianoantunes@itgen.com.br>  Thu, 10 Sep 2015 17:09:04 -0300
+
+alien (8.94) unstable; urgency=medium
+
+  * QA upload.
+  * Fix "FTBFS with perl 5.22 in experimental (MakeMaker changes)":
+    remove override_dh_auto_install in debian/rules, and 
+    use DESTDIR in Makefile.PL.
+    (Closes: #792371)
+
+ -- gregor herrmann <gregoa@debian.org>  Sat, 25 Jul 2015 21:24:15 +0200
+
 alien (8.93) unstable; urgency=medium
 
   * Alien needs a new maintainer, both in Debian and upstream.
