@@ -302,26 +302,159 @@ sub prep {
 	my $this=shift;
 	my $dir=$this->unpacked_tree || die "The package must be unpacked first!";
 
+	# Exclude standard system directories
+	# This list is adapted from the rpmlint source code
+	my @standard_dirs = (
+		"/",
+		"/bin/",
+		"/boot/",
+		"/etc/",
+		"/etc/X11/",
+		"/etc/opt/",
+		"/etc/profile.d/",
+		"/etc/skel/",
+		"/etc/xinetd.d/",
+		"/home/",
+		"/lib/",
+		"/lib/modules/",
+		"/lib64/",
+		"/media/",
+		"/mnt/",
+		"/mnt/cdrom/",
+		"/mnt/disk/",
+		"/mnt/floppy/",
+		"/opt/",
+		"/proc/",
+		"/root/",
+		"/run/",
+		"/sbin/",
+		"/selinux/",
+		"/srv/",
+		"/sys/",
+		"/tmp/",
+		"/usr/",
+		"/usr/X11R6/",
+		"/usr/X11R6/bin/",
+		"/usr/X11R6/doc/",
+		"/usr/X11R6/include/",
+		"/usr/X11R6/lib/",
+		"/usr/X11R6/lib64/",
+		"/usr/X11R6/man/",
+		"/usr/X11R6/man/man1/",
+		"/usr/X11R6/man/man2/",
+		"/usr/X11R6/man/man3/",
+		"/usr/X11R6/man/man4/",
+		"/usr/X11R6/man/man5/",
+		"/usr/X11R6/man/man6/",
+		"/usr/X11R6/man/man7/",
+		"/usr/X11R6/man/man8/",
+		"/usr/X11R6/man/man9/",
+		"/usr/X11R6/man/mann/",
+		"/usr/bin/",
+		"/usr/bin/X11/",
+		"/usr/etc/",
+		"/usr/games/",
+		"/usr/include/",
+		"/usr/lib/",
+		"/usr/lib/X11/",
+		"/usr/lib/games/",
+		"/usr/lib/gcc-lib/",
+		"/usr/lib/menu/",
+		"/usr/lib64/",
+		"/usr/lib64/gcc-lib/",
+		"/usr/local/",
+		"/usr/local/bin/",
+		"/usr/local/doc/",
+		"/usr/local/etc/",
+		"/usr/local/games/",
+		"/usr/local/info/",
+		"/usr/local/lib/",
+		"/usr/local/lib64/",
+		"/usr/local/man/",
+		"/usr/local/man/man1/",
+		"/usr/local/man/man2/",
+		"/usr/local/man/man3/",
+		"/usr/local/man/man4/",
+		"/usr/local/man/man5/",
+		"/usr/local/man/man6/",
+		"/usr/local/man/man7/",
+		"/usr/local/man/man8/",
+		"/usr/local/man/man9/",
+		"/usr/local/man/mann/",
+		"/usr/local/sbin/",
+		"/usr/local/share/",
+		"/usr/local/share/man/",
+		"/usr/local/share/man/man1/",
+		"/usr/local/share/man/man2/",
+		"/usr/local/share/man/man3/",
+		"/usr/local/share/man/man4/",
+		"/usr/local/share/man/man5/",
+		"/usr/local/share/man/man6/",
+		"/usr/local/share/man/man7/",
+		"/usr/local/share/man/man8/",
+		"/usr/local/share/man/man9/",
+		"/usr/local/share/man/mann/",
+		"/usr/local/src/",
+		"/usr/sbin/",
+		"/usr/share/",
+		"/usr/share/dict/",
+		"/usr/share/doc/",
+		"/usr/share/icons/",
+		"/usr/share/info/",
+		"/usr/share/man/",
+		"/usr/share/man/man1/",
+		"/usr/share/man/man2/",
+		"/usr/share/man/man3/",
+		"/usr/share/man/man4/",
+		"/usr/share/man/man5/",
+		"/usr/share/man/man6/",
+		"/usr/share/man/man7/",
+		"/usr/share/man/man8/",
+		"/usr/share/man/man9/",
+		"/usr/share/man/mann/",
+		"/usr/share/misc/",
+		"/usr/src/",
+		"/usr/tmp/",
+		"/var/",
+		"/var/cache/",
+		"/var/db/",
+		"/var/lib/",
+		"/var/lib/games/",
+		"/var/lib/misc/",
+		"/var/lib/rpm/",
+		"/var/local/",
+		"/var/log/",
+		"/var/mail/",
+		"/var/nis/",
+		"/var/opt/",
+		"/var/preserve/",
+		"/var/spool/",
+		"/var/spool/mail/",
+		"/var/tmp/"
+		);
+
 	# Place %config in front of files that are conffiles.
 	my @conffiles = @{$this->conffiles};
 	my $filelist;
 	foreach my $fn (@{$this->filelist}) {
-		# Unquote any escaped characters in filenames - needed for
-		# non ascii characters. (eg. iso_8859-1 latin set)
-		if ($fn =~ /\\/) {
-			$fn=eval qq{"$fn"};
-		}
+		if (! grep(m:^\Q$fn\E$:,@standard_dirs)) {
+			# Unquote any escaped characters in filenames - needed for
+			# non ascii characters. (eg. iso_8859-1 latin set)
+			if ($fn =~ /\\/) {
+				$fn=eval qq{"$fn"};
+			}
 
-		# Note all filenames are quoted in case they contain
-		# spaces.
-		if ($fn =~ m:/$:) {
-			$filelist.=qq{%dir "$fn"\n};
-		}
-		elsif (grep(m:^\Q$fn\E$:,@conffiles)) { # it's a conffile
-			$filelist.=qq{%config "$fn"\n};
-		}
-		else { # normal file
-			$filelist.=qq{"$fn"\n};
+			# Note all filenames are quoted in case they contain
+			# spaces.
+			if ($fn =~ m:/$:) {
+				$filelist.=qq{%dir "$fn"\n};
+			}
+			elsif (grep(m:^\Q$fn\E$:,@conffiles)) { # it's a conffile
+				$filelist.=qq{%config "$fn"\n};
+			}
+			else { # normal file
+				$filelist.=qq{"$fn"\n};
+			}
 		}
 	}
 
