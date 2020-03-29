@@ -5,8 +5,10 @@ alien (8.95.1) unstable; urgency=medium
   * debian/control:
     + Bump debhelper compat to v12.
     + Bump Standards-Version to 4.5.0.
+    + Update Vcs-* fields to use git packaging repo under Salsa
+      Debian group.
 
- -- Boyuan Yang <byang@debian.org>  Sat, 28 Mar 2020 23:40:10 -0400
+ -- Boyuan Yang <byang@debian.org>  Sat, 28 Mar 2020 23:41:15 -0400
 
 alien (8.95) unstable; urgency=medium
 
