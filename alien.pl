@@ -37,7 +37,7 @@ installed.
 
 =item lsb
 
-Unlike the other package formats, B<alien> can handle the depenendencies of
+Unlike the other package formats, B<alien> can handle the dependencies of
 lsb packages if the destination package format supports dependencies. Note
 that this means that the package generated from a lsb package will depend on
 a package named "lsb" -- your distribution should provide a package by that
@@ -158,12 +158,12 @@ Do not use any patch files.
 
 =item B<--description=>I<desc>
 
-Specifiy a description for the package. This only has an effect when
+Specify a description for the package. This only has an effect when
 converting from the tgz package format, which lacks descriptions.
 
 =item B<--version=>I<version>
 
-Specifiy a version for the package. This only has an effect when
+Specify a version for the package. This only has an effect when
 converting from the tgz package format, which may lack version
 information.
 

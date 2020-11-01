@@ -1,4 +1,23 @@
-alien (8.95.1) unstable; urgency=medium
+alien (8.95.2) experimental; urgency=medium
+
+  * QA upload.
+  * debian/control:
+      + Bump debhelper compat to v13.
+      + Included Rules-Requires-Root: no
+  * debian/changelog:
+      + Removed trailing-whitespaces.
+  * alien.pl:
+      + Fixed some misspelled words.
+  * Alien/Package.pm:
+      + Fixed misspelled word.
+  * Alien/Package/Rpm.pm:
+      + Fixed misspeled word.
+  * debian/rules:
+      + Added a "nocheck" check on override_dh_auto_test.
+
+ -- Thiago da Silva Gracini <tsgracini@outlook.com>  Sun, 01 Nov 2020 15:35:34 -0300
+
+alien (8.95.1) experimental; urgency=medium
 
   * QA upload.
   * Rebuild source and binary package.
@@ -7,8 +26,12 @@ alien (8.95.1) unstable; urgency=medium
     + Bump Standards-Version to 4.5.0.
     + Update Vcs-* fields to use git packaging repo under Salsa
       Debian group.
+  * Rpm.pm: Do not ship conflicting dirs. (Closes: #759533)
+  * Deb.pm:
+    + Use dh sequencer when generating deb packages.
+    + Bump supported debhelper compatibility level to v10.
 
- -- Boyuan Yang <byang@debian.org>  Sat, 28 Mar 2020 23:41:15 -0400
+ -- Boyuan Yang <byang@debian.org>  Tue, 31 Mar 2020 10:52:19 -0400
 
 alien (8.95) unstable; urgency=medium
 
@@ -28,7 +51,7 @@ alien (8.94) unstable; urgency=medium
 
   * QA upload.
   * Fix "FTBFS with perl 5.22 in experimental (MakeMaker changes)":
-    remove override_dh_auto_install in debian/rules, and 
+    remove override_dh_auto_install in debian/rules, and
     use DESTDIR in Makefile.PL.
     (Closes: #792371)
 
@@ -129,7 +152,7 @@ alien (8.81) unstable; urgency=low
   * Avoid uninitialized value warning when debian/rules fails to run
     due to alien being run in a noexec directory. Closes: #579216
   * Prevent DESTROY stomping on alien's exit code sometimes.
-  * Support extracting lzma compressed RPMs. 
+  * Support extracting lzma compressed RPMs.
     (Patch by unnamed person on some bug tracking system I don't frequent.)
   * Suggest lzma. If not installed, alien will still fail to decompress
     RPMs using it, but will support most rpms, which are not.
@@ -545,7 +568,7 @@ alien (8.30) unstable; urgency=low
 
 alien (8.26) unstable; urgency=low
 
-  * alien.spec: pass PREFIX to Makefile.PL so it works on systems 
+  * alien.spec: pass PREFIX to Makefile.PL so it works on systems
     (such as red hat 8) where the generated Makefile does not use
     $PREFIX in all paths.
 
@@ -702,7 +725,7 @@ alien (8.07) unstable; urgency=low
 
 alien (8.06) unstable; urgency=low
 
-  * Added --fixperms option. Closes: #142850 
+  * Added --fixperms option. Closes: #142850
 
  -- Joey Hess <joeyh@debian.org>  Sun, 21 Apr 2002 22:19:12 -0400
 
@@ -783,7 +806,7 @@ alien (7.30) unstable; urgency=low
     work with solaris's ar and tar.
   * Documented the EMAIL environment variable. Closes: #116754
   * Threw out a lot of old patches, circa 1999. Probably useless today.
-  * When converting to debs, move files as follows, if possible, for better 
+  * When converting to debs, move files as follows, if possible, for better
     FHS compliance:
   	/usr/man	=> /usr/share/man
         /usr/info	=> /usr/share/info
@@ -849,7 +872,7 @@ alien (7.20) unstable; urgency=low
   * Updated to use debhelper v3 when converting packages. This
     automatically should make it start adding ldconfig calls
     as appropriate to maintainer scripts. Closes: #86088
-  * It does mean you need debhelper 3.x for alien to convert to 
+  * It does mean you need debhelper 3.x for alien to convert to
     deb now, so alien-extra will need an update.
   * Rebuilt with newer perl, so it will work with newer perl (bug filed;
     this should not have been necessary).
@@ -864,7 +887,7 @@ alien (7.18) unstable; urgency=low
 
 alien (7.17) unstable; urgency=low
 
-  * Munge in #!/bin/sh entries at the top of rpm maintainer 
+  * Munge in #!/bin/sh entries at the top of rpm maintainer
     scripts that appear to be shell scripts. Closes: #76124
 
  -- Joey Hess <joeyh@debian.org>  Wed,  7 Feb 2001 18:58:56 -0800
@@ -929,7 +952,7 @@ alien (7.9) unstable; urgency=low
 
 alien (7.8) unstable; urgency=low
 
-  * Use debhelper v2 for debian/rules, but not when converting 
+  * Use debhelper v2 for debian/rules, but not when converting
     packages to deb format.
 
  -- Joey Hess <joeyh@debian.org>  Mon, 25 Sep 2000 12:36:25 -0700
@@ -961,7 +984,7 @@ alien (7.5) unstable; urgency=low
 
 alien (7.4) unstable; urgency=low
 
-  * Corrected typo that broke Deb.pm, Closes: #64559 
+  * Corrected typo that broke Deb.pm, Closes: #64559
 
  -- Joey Hess <joeyh@debian.org>  Tue, 23 May 2000 19:30:04 -0700
 
@@ -976,7 +999,7 @@ alien (7.3) unstable; urgency=low
 
 alien (7.2) unstable; urgency=low
 
-  * When reloating files from a rpm, run the mv command directly, 
+  * When reloating files from a rpm, run the mv command directly,
     not in a subshell; this is safer especially if odd filenames are
     involved.
   * When converting from rpm, only chmod each directory once, it was doing
@@ -1235,7 +1258,7 @@ alien (6.34) unstable; urgency=low
 alien (6.33) unstable; urgency=low
 
   * Fixes for rpm 3.0:
-    - Since rpm --showrc has changed to a format that is now very 
+    - Since rpm --showrc has changed to a format that is now very
       difficult to machine parse for the topdir value, don't. Instead,
       force rpm to output the rpm into the cirrent directory. This is
       more consistent anyway.
@@ -1279,7 +1302,7 @@ alien (6.29) unstable; urgency=low
 
 alien (6.28) unstable; urgency=low
 
-  * Don't call dh_installmanpages when converting to .deb, it can do the 
+  * Don't call dh_installmanpages when converting to .deb, it can do the
     wrong thing in some instances.
   * Handling of relocatable packages was broken. (#31868) Fixed it by
     looking at the rpm PREFIXES tag.
@@ -1304,7 +1327,7 @@ alien (6.25) unstable; urgency=low
   * Alien can now be installed into eg, /usr/local via a PREFIX variaible
     in the Makefile, based on work by Roman Shterenzon <roman@xpert.com>.
   * Typo fix from Roman Shterenzon.
-  * Moved the patch files that come with alien out of /var/lib/alien 
+  * Moved the patch files that come with alien out of /var/lib/alien
     into /usr/lib/alien/patches. Alien will now check both directories for
     patches, /var first.
 
@@ -1366,7 +1389,7 @@ alien (6.17) unstable; urgency=low
 alien (6.16) unstable; urgency=low
 
   * When converting from .tgz files, use arch: all. Sort of a hack, but
-    since we don't know what arch of stuff is in them, it's as good a 
+    since we don't know what arch of stuff is in them, it's as good a
     guess as any. This will let people use the conversion on other
     architectures. (#26253).
 
@@ -1428,7 +1451,7 @@ alien (6.09) unstable; urgency=low
     to be generated by "alien --to-rpm --scripts".
   * That bug is even less likely, becuase it turns out --scripts has been
     broken since alien version 6.0. Oops. Fixed.
-  * --single and --description were also broken since 6.0, and are fixed 
+  * --single and --description were also broken since 6.0, and are fixed
     now.
   * It used to be that only shell scripts could be converted to rpm format,
     because of a stupid bug. Fixed.
@@ -1556,7 +1579,7 @@ alien (5.19) unstable; urgency=low
 alien (5.18) unstable; urgency=low
 
   * Use debhelper to build alien (still uses debstd to convert packages).
-  * Use dpkg-deb if available, instead of using ar. This fixes #12318: alien 
+  * Use dpkg-deb if available, instead of using ar. This fixes #12318: alien
     can now handle old format deb files.
 
  -- Joey Hess <joeyh@debian.org>  Sat, 27 Sep 1997 15:52:08 -0400
@@ -1564,7 +1587,7 @@ alien (5.18) unstable; urgency=low
 alien (5.17) unstable; urgency=low
 
   * Added version info to filename of generated .tgz files.
-  * Added --keep-version flag, which makes alien not increment the 
+  * Added --keep-version flag, which makes alien not increment the
     release number/debian version number.
   * Man page fixups.
   * Fixes for epochs (for now, just remove epochs, since rpm cannot handle
@@ -1595,7 +1618,7 @@ alien (5.14) unstable; urgency=low
 
 alien (5.13) unstable; urgency=low
 
-  * Preliminary support for converting install scripts with the --scripts 
+  * Preliminary support for converting install scripts with the --scripts
     option. We have to uuencode them for rpm's.
   * Revised documentation.
   * Routine update of debian/rules:
@@ -1664,8 +1687,8 @@ alien (5.5) unstable; urgency=low
 
   * Added some more documentation and warnings about file ownerships getting
     screwed up if you run alien as non-root.
-  * Added basic support for converting to Slackware tgz format. Mostly 
-    untested. I confess, I did this just to simplify the documentation of 
+  * Added basic support for converting to Slackware tgz format. Mostly
+    untested. I confess, I did this just to simplify the documentation of
     what alien can do. It was only 10 lines of code to add this, anyway. :-)
   * Had a hard drive crash and reassembled this package from bits and
     pieces. Hope it's not broken..
@@ -1699,7 +1722,7 @@ alien (5.2) unstable; urgency=low
 alien (5.1) unstable; urgency=low
 
   * Added partial support for relocatable packages: DEFAULTPREFIX is
-    examined, and if set, a subdirectory by the same name is created in the 
+    examined, and if set, a subdirectory by the same name is created in the
     build directory of the package. This means relocatable packages end up
     in a sane location, not scattered in the root directory as they were
     previously.
@@ -1731,7 +1754,7 @@ alien (4.2) unstable; urgency=low
 
   * When installing deb file, alien will use --no-force-overwrite
     The idea behind this is to make it difficult to trash your debian system
-    by installing alien packages that overwrite files in it. This only works 
+    by installing alien packages that overwrite files in it. This only works
     if you use alien --install, not if you install the resulting .deb file by
     hand. This is a temporary fix until dpkg has --force-overwrite turned
     off by default.
@@ -1741,7 +1764,7 @@ alien (4.2) unstable; urgency=low
 alien (4.1) unstable; urgency=low
 
   * If a package has underscores in it's name and is being converted to deb
-    format, change the underscores to dashes. Thanks to  
+    format, change the underscores to dashes. Thanks to
     Robert Coie <rac@mata.intrigue.com>
   * Strip out any other disallowed characters in package name when
     converting to deb.
@@ -1765,7 +1788,7 @@ alien (4.00) unstable; urgency=low
     postinst. If there is any demand, I'll try to work this back into the
     program.
   * Rewrote most of the man page.
-  * Fixed the version number so there are two digets in the minor revision 
+  * Fixed the version number so there are two digets in the minor revision
     number.
 
  -- Joey Hess <joeyh@debian.org>  Sat, 29 Mar 1997 21:49:30 -0500
@@ -1837,7 +1860,7 @@ alien (2.80) unstable; urgency=low
   * Fixed bug in guessing name of patch file to use.
   * Fixed bug that would not let you specify a patch file in the current
     directory, or a relative path to a patch file.
-  * Don't use /etc/rpmrc as an indiciation of whether rpm is present, as 
+  * Don't use /etc/rpmrc as an indiciation of whether rpm is present, as
     this is a conffile, and might be deleted. Test for actual rpm binary.
   * More friendly error message if patch file is not found, suggesting that
     you try -n option.
@@ -2582,7 +2605,7 @@ debmake (1.00) unstable; urgency=low
   * rpminstall enables a direct installation of Red Hat packages into the
     debian package maintenance system! All dpkg commands will work on it!
   * rpminstall uses debstd and thus compresses manpages + documentation and
-    computes dependencies according to the libraries referenced by the 
+    computes dependencies according to the libraries referenced by the
     ELF binaries in the Red Hat package.
 
  -- Christoph Lameter <clameter@waterf.org>  Sun, 27 Oct 1996 12:17:51 -0800
@@ -2698,7 +2721,7 @@ debmake (0.4) unstable; urgency=low
 
   * Added automatic compression of documentation in /usr/man and /usr/doc
     if files are >1K.
-  * Checks for dangling symlinks and redirects symlinks to filenames that 
+  * Checks for dangling symlinks and redirects symlinks to filenames that
     were changed due to compression.
   * Added rc.boot handling
   * Permissions for documentation were set to executable when debstd was

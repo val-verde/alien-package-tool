@@ -173,7 +173,7 @@ sub install {
 =item test
 
 Test a package file. The filename is passed, should return an array of lines
-of test results. Child classses may implement this.
+of test results. Child classes may implement this.
 
 =cut
 

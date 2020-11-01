@@ -612,7 +612,7 @@ sub version {
 
 Set/get script fields.
 
-When retrieving a value, we have to do some truely sick mangling. Since
+When retrieving a value, we have to do some truly sick mangling. Since
 debian/slackware scripts can be anything -- perl programs or binary files
 -- and rpm is limited to only shell scripts, we need to encode the files
 and add a scrap of shell script to make it unextract and run on the fly.

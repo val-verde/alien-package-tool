@@ -3,8 +3,10 @@
 	dh $@
 
 override_dh_auto_test:
-	# simple smoke test
+ifeq (,$(filter nocheck,$(DEB_BUILD_OPTIONS)))
 	./alien.pl -V
+endif
+
 
 override_dh_auto_clean:
 	# distclean moans about MANIFEST, this is quieter
