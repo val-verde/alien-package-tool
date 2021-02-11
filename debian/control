@@ -11,10 +11,10 @@ Homepage: http://kitenet.net/~joey/code/alien/
 
 Package: alien
 Architecture: all
-Depends: debhelper,
+Depends: debhelper (>= 10),
          ${misc:Depends},
          ${perl:Depends},
-         rpm,
+         rpm (>= 2.4.4-2),
          dpkg-dev,
          make,
          cpio,
