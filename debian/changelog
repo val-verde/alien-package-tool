@@ -1,3 +1,10 @@
+alien (8.95.3) UNRELEASED; urgency=medium
+
+  * Remove constraints unnecessary since stretch:
+    + alien: Drop versioned constraint on debhelper, rpm in Depends.
+
+ -- Debian Janitor <janitor@jelmer.uk>  Sun, 14 Feb 2021 15:04:05 -0000
+
 alien (8.95.2) experimental; urgency=medium
 
   * QA upload.
