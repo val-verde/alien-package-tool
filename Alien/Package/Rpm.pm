@@ -744,6 +744,10 @@ sub arch {
 			# Treat armv7l as armel.
 			$arch='armel';
 		}
+		elsif ($arch eq 'aarch64') {
+			# Treat aarch64 as arm64.
+			$arch='arm64';
+		}
 		elsif ($arch eq 'parisc') {
 			$arch='hppa';
 		}
