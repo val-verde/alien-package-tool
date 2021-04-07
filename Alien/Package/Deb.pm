@@ -482,9 +482,11 @@ override_dh_auto_configure:
 override_dh_auto_build:
 
 override_dh_auto_install:
+	mkdir -p debian/\$(PACKAGE)
 	# Copy the packages's files.
 	find . -maxdepth 1 -mindepth 1 -not -name debian -print0 | \\
-		xargs -0 -r -i cp -a {} debian/\$(PACKAGE)
+		sed -e s#'./'##g | \\
+		xargs -0 -r -i cp -a ./{} debian/\$(PACKAGE)/{}
 #
 # If you need to move files around in debian/\$(PACKAGE) or do some
 # binary patching, do it here
