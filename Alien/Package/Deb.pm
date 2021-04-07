@@ -472,7 +472,7 @@ sub prep {
 PACKAGE=\$(shell dh_listpackages)
 
 %:
-	dh $@
+	dh \$\@
 
 override_dh_clean:
 	dh_clean -d
