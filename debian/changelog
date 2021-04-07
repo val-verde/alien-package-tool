@@ -1,3 +1,19 @@
+alien (8.95.4) unstable; urgency=high
+
+  * QA upload.
+  * Alien/Package/Deb.pm: Fix incorrect debian/rules template by
+    properly escaping special characters (dh \$\@ instead of dh $@).
+    Closes: #983492.
+  * Alien/Package/Deb.pm: Fix incorrect file installation path.
+    This fixes the bug in manual override_dh_auto_install that files
+    are placed under / instead of /usr/ (default prefix).
+    Closes: #985835.
+  * Alien/Package/Rpm.pm: Also map aarch64 in rpm to arm64 in deb.
+    This fixes conversion of aarch64 rpm packages.
+    Closes: #985808.
+
+ -- Boyuan Yang <byang@debian.org>  Wed, 07 Apr 2021 12:15:06 -0400
+
 alien (8.95.3) unstable; urgency=medium
 
   * QA upload.
