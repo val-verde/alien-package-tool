@@ -496,6 +496,9 @@ override_dh_strip:
 # This has been known to break on some wacky binaries.
 	#	dh_strip
 
+override_dh_usrlocal:
+	-dh_usrlocal || printf "Your package seems to be installing files into /usr/local/, which could be buggy. Will continue anyway.\\n"
+
 override_dh_fixperms:
 $fixpermscomment	dh_fixperms
 
